@@ -1,0 +1,20 @@
+# Default settings for `travis-worker`
+# Change, save, and then restart `travis-worker` for them to take effect
+
+export TRAVIS_WORKER_BASE_DIR=/var/lib/travis-worker/queue
+export TRAVIS_WORKER_QUEUE_TYPE=file
+
+export TRAVIS_WORKER_POOL_SIZE=1
+export TRAVIS_WORKER_PROVIDER_NAME=docker
+export TRAVIS_WORKER_DOCKER_ENDPOINT=unix://var/run/docker.sock
+export TRAVIS_WORKER_DOCKER_CMD="/usr/sbin/sshd -D"
+export TRAVIS_WORKER_DOCKER_CPUS=1
+export TRAVIS_WORKER_DOCKER_MEMORY=800MB
+export TRAVIS_WORKER_DOCKER_NATIVE=true
+
+export TRAVIS_WORKER_BUILD_API_URI=<%= @attributes.TRAVIS_WORKER_BUILD_API_URI %>
+export TRAVIS_WORKER_BUILD_API_INSECURE_SKIP_VERIFY=true
+
+export TRAVIS_WORKER_HARD_TIMEOUT=5m0s
+
+export TRAVIS_WORKER_SILENCE_METRICS=true
