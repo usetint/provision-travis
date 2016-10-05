@@ -16,5 +16,10 @@ apt-get install -y ssh git make curl jekyll > /dev/null
 
 # Create user travis with password "travis"
 useradd -m -p '$6$fwW6ZT6i$qhKP.1nFbUadigKW5IIwTvy8I5aYgDTtSch4J5YVcNMKuwGrXsghjGn8cnQArcRSBt01VGwjQVGleInY/zwdD0' travis || true
+mkdir -p /home/travis/.ssh
+printf "Host *\n\tStrictHostKeyChecking no" > /home/travis/.ssh/config
+chown -R travis:travis /home/travis/.ssh
+chmod 0700 /home/travis/.ssh
+chmod 0600 /home/travis/.ssh/config
 
 mkdir -p /var/run/sshd
