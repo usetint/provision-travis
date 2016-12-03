@@ -10,7 +10,8 @@ fi
 cat files/default-travis-worker > /etc/default/travis-worker
 
 mkdir -p /var/lib/travis-worker/queue
-chown travis:travis /var/lib/travis-worker/queue
+# chown may fail if re-provisioning while mounted
+chown travis:travis /var/lib/travis-worker/queue || true
 
 echo "Setting up travis to run on boot"
 if grep travis-worker /etc/rc.local > /dev/null; then

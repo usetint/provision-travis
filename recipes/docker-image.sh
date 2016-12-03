@@ -1,6 +1,6 @@
 echo "Provision docker image"
 
-sunzi.mute "sudo -u travis docker pull debian"
+sunzi.mute "sudo -u travis docker pull debian" || true
 IMAGE="$(sudo -u travis docker images -q travis:default)"
 
 if [ -z "$IMAGE" ]; then
