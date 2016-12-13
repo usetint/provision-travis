@@ -12,7 +12,7 @@ apt-get update > /dev/null
 apt-get -y upgrade > /dev/null
 
 echo "Ensure required packages are installed"
-apt-get install -y ssh git make curl jekyll > /dev/null
+apt-get install -y ssh git git-annex make curl jekyll > /dev/null
 
 # Create user travis with password "travis"
 useradd -m -p '$6$fwW6ZT6i$qhKP.1nFbUadigKW5IIwTvy8I5aYgDTtSch4J5YVcNMKuwGrXsghjGn8cnQArcRSBt01VGwjQVGleInY/zwdD0' travis || true
