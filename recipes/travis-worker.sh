@@ -15,7 +15,7 @@ chown travis:travis /var/lib/travis-worker/queue || true
 
 echo "Setting up travis to run on boot"
 if grep travis-worker /etc/rc.local > /dev/null; then
-	sed -ie 's/^.*travis-worker.*$/( sudo -u travis sh -c ". \/etc\/default\/travis-worker \&\& travis-worker" \& ) \&/' /etc/rc.local
+	sed -ie 's/^.*travis-worker.*$/( sudo -u travis sh -c "umask 0012 \&\& rm -f /var/lib/travis-worker/queue/.write-test \&\& . \/etc\/default\/travis-worker \&\& travis-worker" \& ) \&/' /etc/rc.local
 else
-	sed -ie 's/^exit 0$/( sudo -u travis sh -c ". \/etc\/default\/travis-worker \&\& travis-worker" \& ) \&\nexit 0/' /etc/rc.local
+	sed -ie 's/^exit 0$/( sudo -u travis sh -c "umask 0012 \&\& rm -f /var/lib/travis-worker/queue/.write-test \&\& . \/etc\/default\/travis-worker \&\& travis-worker" \& ) \&\nexit 0/' /etc/rc.local
 fi
